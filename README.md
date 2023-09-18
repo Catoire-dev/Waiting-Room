@@ -1,4 +1,4 @@
 # Waiting-Room
-Originaly by Spector (https://github.com/spectoor)
+Originaly by Spectoor (https://github.com/spectoor)
 
 Exercice de formation
