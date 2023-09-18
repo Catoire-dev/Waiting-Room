@@ -1,0 +1,7 @@
+:root {
+  --font-plex: 'IBM Plex Sans', sans-serif;
+}
+
+* {
+  font-family: var(--font-plex);
+}
