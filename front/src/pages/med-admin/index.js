@@ -1,9 +1,9 @@
 import useSWR from "swr";
 import { API_BASE_URL, FETCHER } from "@/shared/api";
 
+
 export default function MedAdmin() {
   const { data, error } = useSWR(`${API_BASE_URL}/waiting-rooms`, FETCHER);
-  console.log(data);
 
   return (
     <main>
@@ -20,9 +20,7 @@ export default function MedAdmin() {
               <th scope="col">Numéro de Consultation</th>
             </tr>
           </thead>
-          <tbody id="rendezvous-list">
-            
-          </tbody>
+          <tbody id="rendezvous-list"></tbody>
         </table>
         <div class="text-center">
           <button class="btn btn-primary" id="send-button">
