@@ -26,6 +26,7 @@ router.get('/waiting-rooms/:id', (req, resp) => {
     return computeResponse(resp, waitingRoom);
 });
 
+
 router.get('/appointments/:id', (req, resp) => {
     const id = req.params.id;
     const appointment = appointmentDomain.get(id);

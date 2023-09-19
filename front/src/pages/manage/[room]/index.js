@@ -1,11 +1,21 @@
+
+import { useRouter } from 'next/router'
+
 import useSWR from "swr";
 import { API_BASE_URL, FETCHER } from "@/shared/api";
-import { useSearchParams } from "next/navigation";
 
-export default function MedAdmin() {
-  const { data, error } = useSWR(`${API_BASE_URL}/waiting-rooms/A`, FETCHER);
-  if (error) return <div>Erreur lors du chargement des patients</div>;
-  if (!data) return <div>Chargement...</div>;
+export default function Room() {
+    const {room} = useRouter().query;
+
+
+
+    const { data, error } = useSWR(`${API_BASE_URL}/waiting-rooms/${room}`, FETCHER);
+   
+    
+    if (error) return <div>Erreur lors du chargement des patients</div>;
+    if (!data) return <div>Chargement...</div>;
+
+
 
   return (
     <main>
