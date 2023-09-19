@@ -1,17 +1,22 @@
-const rdvFormatList = (data,room) => {
-  const rdvList = data[`${room.toUpperCase()}`];
+export const rdvFormatList = (data) => {
+  const rdvList = data;
   if (!rdvList) {
     return [];
   }
   const formatedRdvList = [];
   rdvList.forEach((el) => {
-    const [firstName, lastName] = el.name.trim().split(" ");
-    const secu = el.noSS.replace(/\s/g, "").slice(0, 5);
-    const cle = el.noSS.replace(/\s/g, "").slice(-2);
-    const code = el.reference.slice(2, 3);
-
-    formatedRdvList.push(`${secu};${lastName};${firstName};${cle};${code}`);
+    formatedRdvList.push(rdvFormatOne(el));
   });
   return formatedRdvList;
 };
-module.exports = rdvFormatList;
+
+export const rdvFormatOne = (data) => {
+  const [firstName, lastName] = data.name.trim().split(" ");
+  const secu = data.noSS.replace(/\s/g, "").slice(0, 5);
+  const cle = data.noSS.replace(/\s/g, "").slice(-2);
+  const code = data.reference.slice(2, 3);
+
+  const formatedRdv = `${secu};${lastName};${firstName};${cle};${code}`;
+
+  return formatedRdv;
+}

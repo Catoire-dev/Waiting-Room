@@ -1,4 +1,4 @@
-import { downloadAllFile, downloadOneFile } from "@/utils/file";
+import { downloadAllFile, downloadOneFile } from "@/pages/manage/[room]/file";
 import { useState } from "react";
 
 export const GenerateCscFile = ({data}) => {
@@ -7,12 +7,9 @@ export const GenerateCscFile = ({data}) => {
 
     return (
         <ul>
-            {/* {data && 
-            data.map(d => <li>{d}</li>)} */}
             {data && 
                 <button onClick={ () => downloadAllFile(data) }>Télécharger tout les fichiers.</button>
             }
-            {/* <a href={blobUrl} download={"ffdp.csv"}>Download</a> */}
         </ul>
     );
 }
