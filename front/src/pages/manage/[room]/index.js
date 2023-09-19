@@ -3,19 +3,18 @@ import { useRouter } from 'next/router'
 
 import useSWR from "swr";
 import { API_BASE_URL, FETCHER } from "@/shared/api";
+import { GenerateCscFile } from '@/pages/manage/[room]/GenerateCsvFile';
+import { downloadOneFile } from '@/pages/manage/[room]/file';
+import { rdvFormatList, rdvFormatOne } from './rdvList';
 
 export default function Room() {
-    const {room} = useRouter().query;
+  const { room } = useRouter().query;
+  const { data, error } = useSWR(`${API_BASE_URL}/waiting-rooms/${room ? room.toLocaleUpperCase() : 'xxx'}`, FETCHER);
+  
+  console.log(data);
 
-
-
-    const { data, error } = useSWR(`${API_BASE_URL}/waiting-rooms/${room}`, FETCHER);
-   
-    
-    if (error) return <div>Erreur lors du chargement des patients</div>;
-    if (!data) return <div>Chargement...</div>;
-
-
+  if (error) return <div>Erreur lors du chargement des patients</div>;
+  if (!data) return <div>Chargement...</div>;
 
   return (
     <main>
@@ -38,6 +37,9 @@ export default function Room() {
                   <td>{dataItem.name}</td>
                   <td>{dataItem.noSS}</td>
                   <td>{dataItem.reference}</td>
+                  <td>
+                    <button onClick={(e) => downloadOneFile(rdvFormatOne(dataItem))}>Télécharger</button>
+                  </td>
                 </tr>
               ))
             ) : (
@@ -48,9 +50,7 @@ export default function Room() {
           </tbody>
         </table>
         <div className="text-center">
-          <button className="btn btn-primary" id="send-button">
-            Send
-          </button>
+          <GenerateCscFile data={rdvFormatList(data)} />
         </div>
       </div>
     </main>
