@@ -20,9 +20,7 @@ export default function MedAdmin() {
               <th scope="col">Numéro de Consultation</th>
             </tr>
           </thead>
-          <tbody id="rendezvous-list">
-            
-          </tbody>
+          <tbody id="rendezvous-list"></tbody>
         </table>
         <div class="text-center">
           <button class="btn btn-primary" id="send-button">
