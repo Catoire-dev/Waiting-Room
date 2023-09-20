@@ -26,10 +26,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 15em;
-  height: 15em;
+  height: 10em;
   background-color: var(--gray-light);
   z-index: 3;
-  border-radius: 1em;
+  border-radius: 0.2em;
   padding: 1em;
   text-align: center;
   display: flex;
@@ -43,9 +43,7 @@
 }
 .confirm-remove .contents .buttons button {
   border: none;
-  background-color: var(--button-color);
   width: 4em;
-  border-radius: 1em;
 }
 
 .hide {

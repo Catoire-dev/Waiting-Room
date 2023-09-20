@@ -5,12 +5,9 @@ import useSWR from "swr";
 import { API_BASE_URL, FETCHER } from "@/shared/api";
 import { GenerateCscFile } from '@/pages/manage/[room]/GenerateCsvFile';
 import { downloadOneFile } from '@/pages/manage/[room]/file';
-import { rdvFormatList, rdvFormatOne } from './rdvList';
-import { RemoveFavPop } from './popup';
-import { useState } from 'react';
+import { FormatRdvList, FormatRdvOne } from './FormatRdvList';
 
 export default function Room() {
-    const [togglePopup, setTogglePopup] = useState(false);
 
     const {room} = useRouter().query;
 
@@ -23,12 +20,10 @@ export default function Room() {
     if (!data) return <div>Chargement...</div>;
 
 
-   const exportToCsv = ()=>{
-    setTogglePopup(true)
-   }
+ 
   return (
     <main>
-        <RemoveFavPop data={data.length} changepopup={setTogglePopup} showPop={togglePopup}/>
+
       <h1>Rendez-vous de la journée :</h1>
       <div className="container mt-5">
         <h1 className="text-center">Liste de Rendez-vous</h1>
@@ -49,7 +44,7 @@ export default function Room() {
                   <td>{dataItem.noSS}</td>
                   <td>{dataItem.reference}</td>
                   <td>
-                    <button onClick={(e) => downloadOneFile(rdvFormatOne(dataItem))}>Télécharger</button>
+                    <button onClick={(e) => downloadOneFile(FormatRdvOne(dataItem))}>Télécharger</button>
                   </td>
                 </tr>
               ))
@@ -61,10 +56,8 @@ export default function Room() {
           </tbody>
         </table>
         <div className="text-center">
-          <GenerateCscFile data={rdvFormatList(data)} />
-          <button className="btn btn-primary" id="send-button" onClick={exportToCsv}>
-            Send
-          </button>
+          {<GenerateCscFile data={FormatRdvList(data)} />}
+
         </div>
       </div>
     </main>
