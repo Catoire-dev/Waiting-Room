@@ -16,6 +16,7 @@ export const GenerateCscFile = ({ data }) => {
   return (
     <>
       <button
+        className="btn btn-success"
         onClick={toglePopup}
         disabled={!(data && (data.length > 0))}
       >

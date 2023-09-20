@@ -3,10 +3,10 @@ import useSWR from "swr";
 import { API_BASE_URL, FETCHER } from "@/shared/api";
 import { GenerateCscFile } from '@/pages/manage/[room]/GenerateCsvFile';
 import { downloadOneFile } from '@/pages/manage/[room]/file';
-import { rdvFormatList, rdvFormatOne } from './rdvList';
 import { getWaitingRoomColor } from '@/shared/colors';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { FormatRdvList, FormatRdvOne } from './FormatRdvList';
 
 export default function Room() {
   const { room } = useRouter().query;
@@ -47,7 +47,7 @@ export default function Room() {
                   <td>{dataItem.noSS}</td>
                   <td>{dataItem.reference}</td>
                   <td>
-                    <button className="btn btn-outline-success"  onClick={(e) => downloadOneFile(rdvFormatOne(dataItem))}>Télécharger</button>
+                    <button className="btn btn-outline-success"  onClick={(e) => downloadOneFile(FormatRdvOne(dataItem))}>Télécharger</button>
                   </td>
                 </tr>
               ))
