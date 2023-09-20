@@ -20,7 +20,7 @@ export const GenerateCscFile = ({ data }) => {
         onClick={toglePopup}
         disabled={!(data && (data.length > 0))}
       >
-        Télécharger tout les fichiers.
+        Télécharger tous les fichiers.
       </button>
 
       <PopupConfirm
