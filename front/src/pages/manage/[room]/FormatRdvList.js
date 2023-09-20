@@ -1,16 +1,16 @@
-export const rdvFormatList = (data) => {
+export const FormatRdvList = (data) => {
   const rdvList = data;
   if (!rdvList) {
     return [];
   }
   const formatedRdvList = [];
   rdvList.forEach((el) => {
-    formatedRdvList.push(rdvFormatOne(el));
+    formatedRdvList.push(FormatRdvOne(el));
   });
   return formatedRdvList;
 };
 
-export const rdvFormatOne = (data) => {
+export const FormatRdvOne = (data) => {
   const [firstName, lastName] = data.name.trim().split(" ");
   const secu = data.noSS.replace(/\s/g, "").slice(0, 5);
   const cle = data.noSS.replace(/\s/g, "").slice(-2);

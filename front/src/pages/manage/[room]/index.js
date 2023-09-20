@@ -17,9 +17,11 @@ export default function Room() {
     setRoomColor(getWaitingRoomColor(room ? room.toUpperCase() : ''))
   }, [room])
 
-  if (error) return <div>Erreur lors du chargement des patients</div>;
-  if (!data) return <div>Chargement...</div>;
+    if (error) return <div>Erreur lors du chargement des patients</div>;
+    if (!data) return <div>Chargement...</div>;
 
+
+ 
   return (
     <main id='box'>
       <section className={'box ' + roomColor}>
@@ -57,7 +59,8 @@ export default function Room() {
           </tbody>
         </table>
         <div className="text-center">
-          <GenerateCscFile data={rdvFormatList(data)} />
+          {<GenerateCscFile data={FormatRdvList(data)} />}
+
         </div>
       </div>
     </main>
