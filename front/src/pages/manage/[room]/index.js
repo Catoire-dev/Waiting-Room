@@ -5,13 +5,17 @@ import { GenerateCscFile } from '@/pages/manage/[room]/GenerateCsvFile';
 import { downloadOneFile } from '@/pages/manage/[room]/file';
 import { rdvFormatList, rdvFormatOne } from './rdvList';
 import { getWaitingRoomColor } from '@/shared/colors';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function Room() {
   const { room } = useRouter().query;
   const { data, error } = useSWR(`${API_BASE_URL}/waiting-rooms/${room ? room.toUpperCase() : 'xxx'}`, FETCHER);
-  const [roomColor, setRoomColor] = useState(getWaitingRoomColor(room ? room.toUpperCase() : 'A'));
+  const [roomColor, setRoomColor] = useState(getWaitingRoomColor(room ? room.toUpperCase() : ''));
+
+  useEffect(() => {
+    setRoomColor(getWaitingRoomColor(room ? room.toUpperCase() : ''))
+  }, [room])
 
   if (error) return <div>Erreur lors du chargement des patients</div>;
   if (!data) return <div>Chargement...</div>;
@@ -20,7 +24,7 @@ export default function Room() {
     <main id='box'>
       <section className={'box ' + roomColor}>
         <Link href={'/manage'}>Retour</Link>
-        <p id='room-box' >Salle {room.toUpperCase()}</p>
+        <p id='room-box' >Salle {room ? room.toUpperCase() : ''}</p>
       </section>
       <div className="container mt-5">
         <h1 className="text-center mb-5">Liste de Rendez-vous De la Journée</h1>
