@@ -1,6 +1,6 @@
 import './globals.css'
-import "../style/manageView.css";
-
+import '../styles/room.css';
+import '../styles/manageView.css';
 
 export default function MyApp({ Component, pageProps }) {
   return (

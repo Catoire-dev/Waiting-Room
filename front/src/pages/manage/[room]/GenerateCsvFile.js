@@ -8,7 +8,7 @@ export const GenerateCscFile = ({data}) => {
     return (
         <ul>
             {data && 
-                <button onClick={ () => downloadAllFile(data) }>Télécharger tout les fichiers.</button>
+                <button className="btn btn-success" onClick={ () => downloadAllFile(data) }>Télécharger tout les fichiers.</button>
             }
         </ul>
     );

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import styles from './app.module.css';
+import { getWaitingRoomColor } from '@/shared/colors';
 
 const pageMetadata = {
   title: 'Dental Waiting Room'
@@ -23,31 +24,30 @@ export default function NextPatientView({waitingRooms}) {
       }
     </div>
   };
-
   return (
     <main className={'container'}>
       <Head>
         <title>{pageMetadata.title}</title>
       </Head>
       <div className={'row'}>
-        <div className={`col-5 card mt-5 ${styles.waitingRoom} bg-secondary`}>
+        <div className={`col-5 card mt-5 ${styles.waitingRoom} ${getWaitingRoomColor('A')}`}>
           {
             displayRoom('A')
           }
         </div>
-        <div className={`col-5 offset-1 card mt-5 ${styles.waitingRoom} bg-warning`}>
+        <div className={`col-5 offset-1 card mt-5 ${styles.waitingRoom} ${getWaitingRoomColor('C')}`}>
           {
             displayRoom('C')
           }
         </div>
       </div>
       <div className={'row'}>
-        <div className={`col-5 card mt-5 ${styles.waitingRoom} bg-warning`}>
+        <div className={`col-5 card mt-5 ${styles.waitingRoom} ${getWaitingRoomColor('B')}`}>
           {
             displayRoom('B')
           }
         </div>
-        <div className={`col-5 offset-1 card mt-5 ${styles.waitingRoom} bg-success`}>
+        <div className={`col-5 offset-1 card mt-5 ${styles.waitingRoom} ${getWaitingRoomColor('D')}`}>
           {
             displayRoom('D')
           }
