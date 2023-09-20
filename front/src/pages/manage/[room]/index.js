@@ -3,6 +3,9 @@ import { useRouter } from 'next/router'
 
 import useSWR from "swr";
 import { API_BASE_URL, FETCHER } from "@/shared/api";
+import { GenerateCscFile } from '@/pages/manage/[room]/GenerateCsvFile';
+import { downloadOneFile } from '@/pages/manage/[room]/file';
+import { rdvFormatList, rdvFormatOne } from './rdvList';
 import { RemoveFavPop } from './popup';
 import { useState } from 'react';
 
@@ -45,6 +48,9 @@ export default function Room() {
                   <td>{dataItem.name}</td>
                   <td>{dataItem.noSS}</td>
                   <td>{dataItem.reference}</td>
+                  <td>
+                    <button onClick={(e) => downloadOneFile(rdvFormatOne(dataItem))}>Télécharger</button>
+                  </td>
                 </tr>
               ))
             ) : (
@@ -55,6 +61,7 @@ export default function Room() {
           </tbody>
         </table>
         <div className="text-center">
+          <GenerateCscFile data={rdvFormatList(data)} />
           <button className="btn btn-primary" id="send-button" onClick={exportToCsv}>
             Send
           </button>

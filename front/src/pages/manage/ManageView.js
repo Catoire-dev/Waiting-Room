@@ -1,18 +1,23 @@
 import Head from 'next/head';
 import { getWaitingRoomColor } from '@/shared/colors';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const pageMetadata = {
   title: 'Dental Waiting Room - Manage'
 };
 
 export default function ManageView({waitingRooms}) {
+  const router = useRouter();
 
   const displayWaitingRooms = () => {
     const display = [];
     waitingRooms.forEach((appointments, room) => {
       display.push(
         <div className={`mt-4`} key={`room-${room}`}>
+          <Link href={`/manage/${room}`}>
           <h3 className={`px-3 py-2 ${getWaitingRoomColor(room)}`}>{`Salle ${room}`}</h3>
+          </Link>
 
           {
             appointments.map((appointment, index) =>
