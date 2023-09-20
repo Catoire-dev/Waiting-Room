@@ -1,5 +1,5 @@
-const rdvFormatList = (data,room) => {
-  const rdvList = data[`${room.toUpperCase()}`];
+const rdvFormatList = (data) => {
+  const rdvList = data;
   if (!rdvList) {
     return [];
   }

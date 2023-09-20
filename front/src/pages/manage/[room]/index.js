@@ -3,22 +3,29 @@ import { useRouter } from 'next/router'
 
 import useSWR from "swr";
 import { API_BASE_URL, FETCHER } from "@/shared/api";
+import { RemoveFavPop } from './popup';
+import { useState } from 'react';
 
 export default function Room() {
+    const [togglePopup, setTogglePopup] = useState(false);
+
     const {room} = useRouter().query;
 
 
+    const { data, error } = useSWR(`${API_BASE_URL}/waiting-rooms/${room ? room.toUpperCase() : "xxx"}`, FETCHER);
 
-    const { data, error } = useSWR(`${API_BASE_URL}/waiting-rooms/${room}`, FETCHER);
-   
     
+
     if (error) return <div>Erreur lors du chargement des patients</div>;
     if (!data) return <div>Chargement...</div>;
 
 
-
+   const exportToCsv = ()=>{
+    setTogglePopup(true)
+   }
   return (
     <main>
+        <RemoveFavPop data={data.length} changepopup={setTogglePopup} showPop={togglePopup}/>
       <h1>Rendez-vous de la journée :</h1>
       <div className="container mt-5">
         <h1 className="text-center">Liste de Rendez-vous</h1>
@@ -48,7 +55,7 @@ export default function Room() {
           </tbody>
         </table>
         <div className="text-center">
-          <button className="btn btn-primary" id="send-button">
+          <button className="btn btn-primary" id="send-button" onClick={exportToCsv}>
             Send
           </button>
         </div>
